@@ -1,0 +1,39 @@
+#!/bin/sh
+
+cd /var/www/html/stats/
+X=`php stats.php`
+
+#echo $X
+
+/usr/bin/rrdupdate /var/www/html/stats/ipport.rrd  $X
+
+VAL="DEF:ip=/var/www/html/stats/ipport.rrd:ip:AVERAGE
+    DEF:port=/var/www/html/stats/ipport.rrd:port:AVERAGE
+    LINE1:ip#FF0000:IP
+    LINE2:port#0000FF:Ports"
+VAL_LAST="DEF:ip=/var/www/html/stats/ipport.rrd:ip:LAST
+    DEF:port=/var/www/html/stats/ipport.rrd:port:LAST
+    LINE1:ip#FF0000:IP
+    LINE2:port#0000FF:Ports"
+
+
+/usr/bin/rrdtool graph /var/www/html/stats/day.png -a PNG -E -h 125 -v "C" \
+-t "Daily Graph (5 Minute Average)" \
+-s -129600 --x-grid HOUR:1:HOUR:6:HOUR:6:0:%H:00 \
+    $VAL
+
+/usr/bin/rrdtool graph /var/www/html/stats/week.png -a PNG -E -h 125  -v "C" \
+-t "Weekly Graph (30 Minute Average)" \
+-s -777600 --x-grid HOUR:6:DAY:1:DAY:1:86400:%e\
+    $VAL_LAST
+
+/usr/bin/rrdtool graph /var/www/html/stats/month.png -a PNG -E -h 125  -v "C" \
+-t "Monthly Graph (2 Hour Average)" \
+-s -3110400 --x-grid DAY:1:MONTH:1:DAY:3:86400:%e\
+    $VAL_LAST
+
+/usr/bin/rrdtool graph /var/www/html/stats/year.png -a PNG -E -h 125  -v "C" \
+-t "Yearly Graph (1 Day Average)" \
+-s -37324800 --x-grid MONTH:1:YEAR:1:MONTH:1:2592000:%m\
+    $VAL_LAST
+
