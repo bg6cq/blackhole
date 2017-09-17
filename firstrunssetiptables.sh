@@ -1,5 +1,7 @@
 #!/bin/bash
 
+iptables -I FORWARD -j DROP -p udp --dport 389 -d 202.38.64.93
+
 #first delete all
 /sbin/iptables -F FORWARD_blackhole
 /sbin/iptables -F blackhole_log_drop
