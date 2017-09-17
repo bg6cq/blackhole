@@ -30,6 +30,7 @@ if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 <input type=submit value=add>
 </form>
 自动程序不会处理与以下白名单IP有关的端口，但web界面可以添加：<p>
+
 <?php
 
 $q="select ip,mask,msg from whitelist order by inet_aton(ip)";

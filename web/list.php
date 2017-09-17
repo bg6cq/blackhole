@@ -1,4 +1,5 @@
 <?php
+
 include "top.php";
 
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
@@ -36,6 +37,7 @@ if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
                 }
         }
 ?>
+
 <form action=list.php>
 增加IP黑洞: IP:<input name=prefix>, 协议:<input type=radio name=prot value="tcp" checked>TCP</input>
 <input type=radio name=prot value="udp">UDP</input><input type=radio name=prot value="all">ALL</input>,
@@ -44,6 +46,7 @@ if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
 </form>
 
 <?php
+
 }
 
 $q="select count(distinct(prefix)) from blackip where status='added'";
@@ -61,10 +64,7 @@ if($s=="s")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start";
 else if($s=="e")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end";
- 
 $result = $mysqli->query($q);
-
-
 echo "<table border=1 cellspacing=0>";
 echo "<tr><th>序号</th><th><a href=list.php>IP</a></th><th><a href=list.php?s=s>start</a></th><th><a href=list.php?s=e>end</a></th>";
 echo "<th>协议</th><th>端口</th><th>MSG</th>";
@@ -103,7 +103,6 @@ if($s=="s")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by start";
 else if($s=="e")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by end";
- 
 $result = $mysqli->query($q);
 echo "<table border=1 cellspacing=0>";
 echo "<tr><th>序号</th><th><a href=list.php>IP</a></th><th><a href=list.php?s=s>start</a></th><th><a href=list.php?s=e>end</a></th>";
@@ -130,7 +129,6 @@ while($r=$result->fetch_array()) {
 	echo "</tr>\n";
 }
 echo "</table>";
-
 
 echo "<p>黑洞路由管理的网段<br>";
 $q="select ip,mask from mylist order by inet_aton(ip)";
