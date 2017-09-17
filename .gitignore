@@ -1,0 +1,16 @@
+tmp.*
+*.c~
+addblackhole
+bgpipv6c
+delblackhole
+dumpipv6
+fromhpfeed
+ip.txt
+ip_prot_port.txt
+ip_prot_port.txt.last
+web/stats/day.png
+web/stats/ipport.rrd
+web/stats/month.png
+web/stats/week.png
+web/stats/year.png
+
