@@ -5,9 +5,6 @@ interface GigabitEthernet0/8/7.2
 #
 
 bgp 24362
- router-id 210.45.231.4
- peer 202.141.161.254 as-number 45081
- peer 202.141.161.254 description ustc_dianxin_vdc
  peer 210.45.230.117 as-number 65500
  peer 210.45.230.117 connect-interface GigabitEthernet0/8/7.2
 
