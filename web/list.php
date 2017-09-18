@@ -97,7 +97,7 @@ while($r=$result->fetch_array()) {
 echo "</table>";
 
 echo "<p>已经失效的黑洞IP<br>";
-$s=$_REQUEST["s"];
+@$s=$_REQUEST["s"];
 $q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by inet_aton(prefix)";
 if($s=="s")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by start";

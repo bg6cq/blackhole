@@ -1,0 +1,27 @@
+interface GigabitEthernet0/8/7.2
+ vlan-type dot1q 2
+ description USTC-blackhole-210.45.224.10
+ ip address 210.45.230.118 255.255.255.252
+#
+
+bgp 24362
+ router-id 210.45.231.4
+ peer 202.141.161.254 as-number 45081
+ peer 202.141.161.254 description ustc_dianxin_vdc
+ peer 210.45.230.117 as-number 65500
+ peer 210.45.230.117 connect-interface GigabitEthernet0/8/7.2
+
+ ipv4-family unicast
+  peer 210.45.230.117 enable
+  peer 210.45.230.117 ip-prefix ustc_blackhole import
+  peer 210.45.230.117 ip-prefix ustc_blackhole_none export
+
+ip ip-prefix ustc_blackhole index 10 permit 114.214.160.0 19 greater-equal 19 less-equal 32
+ip ip-prefix ustc_blackhole index 20 permit 114.214.192.0 18 greater-equal 18 less-equal 32
+ip ip-prefix ustc_blackhole index 30 permit 202.38.64.0 19 greater-equal 19 less-equal 32
+ip ip-prefix ustc_blackhole index 40 permit 210.45.64.0 20 greater-equal 20 less-equal 32
+ip ip-prefix ustc_blackhole index 50 permit 210.45.112.0 20 greater-equal 20 less-equal 32
+ip ip-prefix ustc_blackhole index 60 permit 211.86.144.0 20 greater-equal 20 less-equal 32
+ip ip-prefix ustc_blackhole index 70 permit 222.195.64.0 19 greater-equal 19 less-equal 32
+ip ip-prefix ustc_blackhole_none index 10 deny 0.0.0.0 0 less-equal 32
+

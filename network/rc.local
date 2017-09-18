@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+# eth0 for internal
+# eth1 for ourside, connect to upstream router
+
+ip link set eth0 up
+ip link set eth1 up
+
+ip addr add 210.45.224.10/24 dev eth0
+ip addr add 210.45.230.117/30 dev eth1
+ip route add 0/0 via 210.45.230.118
+
+ip route add 114.214.160.0/19 via 210.45.224.58
+ip route add 114.214.192.0/18 via 210.45.224.58
+ip route add 202.38.64.0/19 via 210.45.224.58
+ip route add 210.45.64.0/20 via 210.45.224.58
+ip route add 210.45.112.0/20 via 210.45.224.58
+ip route add 211.86.144.0/20 via 210.45.224.58
+ip route add 222.195.64.0/19 via 210.45.224.58
+
+/usr/src/traffic/iftrafficd &
+
+echo 1  > /proc/sys/net/ipv4/ip_forward
+
+echo 0 > /proc/sys/net/ipv4/conf/eth0/rp_filter
