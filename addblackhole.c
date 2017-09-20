@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	if (mysql_num_rows(mysql_res) != 0) {
 		MYSQL_ROW row;
 		row = mysql_fetch_row(mysql_res);
-		snprintf(sqlbuf, MAXLEN, "update blackip set end=FROM_UNIXTIME(UNIX_TIMESTAMP()+%s*3600*24) where id='%s'", argv[2], row[0]);
+		snprintf(sqlbuf, MAXLEN, "update blackip set end=FROM_UNIXTIME(UNIX_TIMESTAMP()+%s*3600) where id='%s'", argv[2], row[0]);
 		ExecSQL(sqlbuf, 0);
 		mysql_free_result(mysql_res);
 		fprintf(stderr, "%s update %s\n", nowctime(), argv[1]);
@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
 	mysql_free_result(mysql_res);
 
 	snprintf(sqlbuf, MAXLEN,
-		 "insert into blackip (status,prefix,len,start,end,prot,port,msg) values('adding','%s',32,now(),FROM_UNIXTIME( UNIX_TIMESTAMP()+%s*3600*24+600),'%s','%s','%s');\n",
+		 "insert into blackip (status,prefix,len,start,end,prot,port,msg) values('adding','%s',32,now(),FROM_UNIXTIME( UNIX_TIMESTAMP()+%s*3600),'%s','%s','%s');\n",
 		 argv[1], argv[2], argv[3], argv[4], msg);
 	ExecSQL(sqlbuf, 0);
 	fprintf(stderr, "%s added %s %s %s %s %s\n", nowctime(), argv[1], argv[2], argv[3], argv[4], msg);
