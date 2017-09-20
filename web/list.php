@@ -64,10 +64,14 @@ if($s=="s")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start";
 else if($s=="e")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end";
+else if($s=="p")
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by prot, port";
+else if($s=="m")
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by msg";
 $result = $mysqli->query($q);
 echo "<table border=1 cellspacing=0>";
 echo "<tr><th>序号</th><th><a href=list.php>IP</a></th><th><a href=list.php?s=s>start</a></th><th><a href=list.php?s=e>end</a></th>";
-echo "<th>协议</th><th>端口</th><th>MSG</th>";
+echo "<th><a href=list.php?s=p>协议</a></th><th>端口</th><th><a href=list.php?s=m>MSG</a></th>";
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))
         echo "<th>cmd</th>";
 echo "</tr>\n";
@@ -92,60 +96,6 @@ while($r=$result->fetch_array()) {
         if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1)) {
                 echo "<td><a href=list.php?delistip=$r[0]  onclick=\"return confirm('删除 $r[1]/$r[4]/$r[5] ?');\">删除</a></td>";
         };
-	echo "</tr>\n";
-}
-echo "</table>";
-
-echo "<p>已经失效的黑洞IP<br>";
-@$s=$_REQUEST["s"];
-$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by inet_aton(prefix)";
-if($s=="s")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by start";
-else if($s=="e")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='deleted' order by end";
-$result = $mysqli->query($q);
-echo "<table border=1 cellspacing=0>";
-echo "<tr><th>序号</th><th><a href=list.php>IP</a></th><th><a href=list.php?s=s>start</a></th><th><a href=list.php?s=e>end</a></th>";
-echo "<th>协议</th><th>端口</th><th>MSG</th>";
-echo "</tr>\n";
-$count=0;
-while($r=$result->fetch_array()) {
-	$count++;
-	echo "<tr><td align=center>";
-	echo $count;
-	echo "</td><td>";
-	echo $r[1];
-	echo "</td><td>";
-	echo $r[2];
-	echo "</td><td>";
-	echo $r[3];
-	echo "</td><td>";
-	echo $r[4];
-	echo "</td><td>";
-	echo $r[5];
-	echo "</td><td>";
-	echo $r[6];
-	echo "</td>";
-	echo "</tr>\n";
-}
-echo "</table>";
-
-echo "<p>黑洞路由管理的网段<br>";
-$q="select ip,mask from mylist order by inet_aton(ip)";
-$result = $mysqli->query($q);
-echo "<table border=1 cellspacing=0>";
-echo "<tr><th>序号</th><th>IP</th><th>MASK</th>";
-echo "</tr>\n";
-$count=0;
-while($r=$result->fetch_array()) {
-	$count++;
-	echo "<tr><td align=center>";
-	echo $count;
-	echo "</td><td>";
-	echo $r[0];
-	echo "</td><td>";
-	echo $r[1];
-	echo "</td>";
 	echo "</tr>\n";
 }
 echo "</table>";

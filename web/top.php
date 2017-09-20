@@ -6,7 +6,9 @@
 
 <body bgcolor=#dddddd>
 <a href=index.php>接口流量</a>   
-<a href=list.php>黑洞端口</a> 
+<a href=list.php>黑洞IP</a> 
+<a href=exp.php>失效黑洞</a> 
+<a href=policy.php>防护策略</a>
 <a href=stats.php>数量统计</a>
 <a href=intro.php>简介</a> 
 
