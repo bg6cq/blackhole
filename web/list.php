@@ -61,9 +61,9 @@ echo $r[0]." 端口<p>";
 @$s=$_REQUEST["s"];
 $q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by inet_aton(prefix)";
 if($s=="s")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start desc";
 else if($s=="e")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end desc";
 else if($s=="p")
 	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by prot, port";
 else if($s=="m")
