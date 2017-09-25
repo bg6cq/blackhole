@@ -4,6 +4,17 @@ include "top.php";
 
 ?>
 
+<h2>相关软件</h2>
+1. bgp程序<p>
+<a href=http://blackip.ustc.edu.cn/intro.php>简介</a><p>
+<a href=https://github.com/bg6cq/blackhole>程序</a><p>
+
+2. masscan<p>
+<a href=https://github.com/robertdavidgraham/masscan>程序</a><p>
+
+3. http_info<p>
+<a href=https://github.com/bg6cq/http_info>程序</a>
+<p>
 
 <img src=blackhole.png>
 <pre>
