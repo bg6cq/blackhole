@@ -40,6 +40,7 @@ echo "</table>";
 222.195.70
 202.38.74
 202.38.93
+211.86.151
 </pre>
 </td><td align=center>
 端口开放
@@ -71,6 +72,25 @@ echo "</table>";
 </td><td align=center>
 封IP
 </td></tr>
+
+<tr><td align=center>
+各种IPMI
+</td><td align=center>
+所有
+</td><td align=center>
+各种</td><td align=center>
+封IP
+</td></tr>
+
+<tr><td align=center>
+各种IP摄像头
+</td><td align=center>
+所有
+</td><td align=center>
+各种</td><td align=center>
+封IP
+</td></tr>
+
 </table>
 </pre>
 

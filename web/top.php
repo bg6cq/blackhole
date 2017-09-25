@@ -26,6 +26,8 @@ if(mysqli_connect_error()){
 session_start();
 
 if ( isset($_SESSION["isadmin"]) && $_SESSION["isadmin"]) {
+	echo "<a href=httpinfo.php>HTTPinfo</a> ";
+	echo "<a href=autoblock.php>自动封锁</a> ";
 	echo "<a href=whiteip.php>白名单</a> ";
 	echo "<a href=logout.php>logout</a> ";
 }
