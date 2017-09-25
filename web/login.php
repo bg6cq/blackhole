@@ -17,9 +17,11 @@ if (!$isadmin) {
 
 echo "hello $user/$gid<p>";
 
-if ( $gid == '3199700722') 
+if ( $gid == '3199700722') // james
 	$_SESSION['isadmin']=1;
-else if ( $gid == '3199700722') 
+else if ( $gid == '1199305084')  // xyl
+	$_SESSION['isadmin']=1;
+else if ( $gid == '1200990253')  // chenlei2
 	$_SESSION['isadmin']=1;
 
 $isadmin = $_SESSION['isadmin'];

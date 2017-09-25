@@ -2,7 +2,9 @@
 
 include "top.php";
 
+$limit=" limit 10 ";
 if( isset($_SESSION["isadmin"]) && ($_SESSION["isadmin"]==1))  {
+	$limit=" limit 2000 ";
         if(isset($_REQUEST["delistip"]))  {   //delistip
                 $delistip = intval($_REQUEST["delistip"]);
                 if($delistip!=0) {
@@ -59,15 +61,15 @@ $r=$result->fetch_array();
 echo $r[0]." 端口<p>";
 
 @$s=$_REQUEST["s"];
-$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by inet_aton(prefix)";
+$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by inet_aton(prefix)".$limit;
 if($s=="s")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start desc";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by start desc".$limit;
 else if($s=="e")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end desc";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by end desc".$limit;
 else if($s=="p")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by prot, port";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by prot, port".$limit;
 else if($s=="m")
-	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by msg";
+	$q="select id,prefix,start,end,prot,port,msg from blackip where status='added' order by msg".$limit;
 $result = $mysqli->query($q);
 echo "<table border=1 cellspacing=0>";
 echo "<tr><th>序号</th><th><a href=list.php>IP</a></th><th><a href=list.php?s=s>start</a></th><th><a href=list.php?s=e>end</a></th>";

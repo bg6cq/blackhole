@@ -10,7 +10,6 @@
 <a href=exp.php>失效黑洞</a> 
 <a href=policy.php>防护策略</a>
 <a href=stats.php>数量统计</a>
-<a href=httpinfo.php>HTTPinfo</a>
 <a href=intro.php>简介</a> 
 
 <?php
@@ -27,6 +26,8 @@ if(mysqli_connect_error()){
 session_start();
 
 if ( isset($_SESSION["isadmin"]) && $_SESSION["isadmin"]) {
+	echo "<a href=httpinfo.php>HTTPinfo</a> ";
+	echo "<a href=autoblock.php>自动封锁</a> ";
 	echo "<a href=whiteip.php>白名单</a> ";
 	echo "<a href=logout.php>logout</a> ";
 }

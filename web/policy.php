@@ -72,6 +72,25 @@ echo "</table>";
 </td><td align=center>
 封IP
 </td></tr>
+
+<tr><td align=center>
+各种IPMI
+</td><td align=center>
+所有
+</td><td align=center>
+各种</td><td align=center>
+封IP
+</td></tr>
+
+<tr><td align=center>
+各种IP摄像头
+</td><td align=center>
+所有
+</td><td align=center>
+各种</td><td align=center>
+封IP
+</td></tr>
+
 </table>
 </pre>
 
